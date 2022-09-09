@@ -7,7 +7,7 @@ public class Book {
     private String title;
     private String author;
     private Genre genre;
-    private String[] pages;
+    private static String[] pages;
     //declare constructor
 
     public Book(String title, String author, Genre genre, String[] pages) {
@@ -46,11 +46,19 @@ public class Book {
         return 0;
     }
     public static String nextPage(){
-        return "";
+        if (getCurrentPageNumber() < pages.length-1){
+        return pages[getCurrentPageNumber()+1];
+    }else {
+            return "";
+        }
+    public static String prevPage() {
+        if (getCurrentPageNumber() != 0) {
+            return pages[getCurrentPageNumber() - 1];
+        } else {
+            return "";
+        }
     }
-    public static String prevPage(){
-        return "";
-    }
+
     public static String openPage(int pageNumber){
         return "";
     }
@@ -58,7 +66,7 @@ public class Book {
         return "";
     }
     public static int getNumPages(){
-        return 0;
+        return pages.length;
     }
     public static int getPercentComplete(){
         return 0;

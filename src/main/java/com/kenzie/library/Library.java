@@ -16,22 +16,22 @@ public class Library {
 
     }
     public static String[] listBooks(){
-        return String[];
+        return null;
     }
     public static String[] listBooks(Genre genre){
-        return String[];
+        return null;
     }
     public static String[] listAvailableBooks(){
-        return String[];
+        return null;
     }
     public static String[] listAvailableBooks(Genre genre){
-        return String[];
+        return null;
     }
     public static boolean hasBook(String bookTitle){
         return true;
     }
     public static Book checkoutBook(String bookTitle){
-        return Book;
+        return null;
     }
     public static void returnBook(Book book){
 
