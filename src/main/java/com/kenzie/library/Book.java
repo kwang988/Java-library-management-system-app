@@ -7,9 +7,10 @@ public class Book {
     private String title;
     private String author;
     private Genre genre;
-    private static String[] pages;
-    //declare constructor
+    private String[] pages;
+    private int currentPageNum = 0;
 
+    //declare constructor
     public Book(String title, String author, Genre genre, String[] pages) {
         this.title = title;
         this.author = author;
@@ -42,33 +43,57 @@ public class Book {
     }
 
     //declare other methods
-    public static int getCurrentPageNumber(){
-        return 0;
+    public int getCurrentPageNumber() {
+        return currentPageNum;
     }
-    public static String nextPage(){
-        if (getCurrentPageNumber() < pages.length-1){
-        return pages[getCurrentPageNumber()+1];
-    }else {
-            return "";
-        }
-    public static String prevPage() {
-        if (getCurrentPageNumber() != 0) {
-            return pages[getCurrentPageNumber() - 1];
+
+    public String nextPage() {
+        if (currentPageNum == pages.length - 1) {
+            return null;
         } else {
-            return "";
+            currentPageNum++;
+            return pages[currentPageNum];
         }
     }
 
-    public static String openPage(int pageNumber){
-        return "";
+    public String prevPage() {
+        if (currentPageNum == 0) {
+            return null;
+        } else {
+            currentPageNum--;
+            return pages[currentPageNum];
+        }
     }
-    public static String tearOutCurrentPage(){
-        return "";
+
+    public String openPage(int pageNumber) {
+        currentPageNum = pageNumber;
+        return pages[currentPageNum];
     }
-    public static int getNumPages(){
+
+    public String tearOutCurrentPage() {
+        String tearOutPage = pages[currentPageNum];
+        String newPointToStr = "";
+        if (currentPageNum != pages.length - 1) {
+            newPointToStr = pages[currentPageNum + 1];
+        } else {
+            currentPageNum--;
+        }
+        String[] newPages = new String[pages.length - 1];
+        for (int i = 0, j = 0; i < pages.length; i++) {
+            if (i != currentPageNum) {
+                newPages[j++] = pages[i];
+            }
+        }
+        newPages[currentPageNum] = newPointToStr;
+        pages = newPages;
+        return tearOutPage;
+    }
+
+    public int getNumPages() {
         return pages.length;
     }
-    public static int getPercentComplete(){
-        return 0;
+
+    public int getPercentComplete() {
+        return getCurrentPageNumber() * 100 / (getNumPages() - 1);
     }
 }
